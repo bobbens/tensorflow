@@ -21,7 +21,7 @@ namespace gputools {
 namespace internal {
 
 /* static */ port::Status DsoLoader::GetCublasDsoHandle(void** dso_handle) {
-  return GetDsoHandle(FindDsoPath("libcublas.so.7.0",
+  return GetDsoHandle(FindDsoPath("libcublas.so.7.5",
                                   "third_party/gpus/cuda/lib64"),
                       dso_handle);
 }
@@ -35,13 +35,13 @@ namespace internal {
 }
 
 /* static */ port::Status DsoLoader::GetCufftDsoHandle(void** dso_handle) {
-  return GetDsoHandle(FindDsoPath("libcufft.so.7.0",
+  return GetDsoHandle(FindDsoPath("libcufft.so.7.5",
                                   "third_party/gpus/cuda/lib64"),
                       dso_handle);
 }
 
 /* static */ port::Status DsoLoader::GetCurandDsoHandle(void** dso_handle) {
-  return GetDsoHandle(FindDsoPath("libcurand.so.7.0",
+  return GetDsoHandle(FindDsoPath("libcurand.so.7.5",
                                   "third_party/gpus/cuda/lib64"),
                       dso_handle);
 }
@@ -54,7 +54,7 @@ namespace internal {
 
 /* static */ port::Status DsoLoader::GetLibcuptiDsoHandle(void** dso_handle) {
   return GetDsoHandle(
-      FindDsoPath("libcupti.so.7.0",
+      FindDsoPath("libcupti.so.7.5",
                   "third_party/gpus/cuda/extras/CUPTI/lib64"),
       dso_handle);
 }

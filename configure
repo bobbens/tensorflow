@@ -21,16 +21,16 @@ while true; do
   fromuser=""
   if [ -z "$CUDA_TOOLKIT_PATH" ]; then
     default_cuda_path=/usr/local/cuda
-    read -p "Please specify the location where CUDA 7.0 toolkit is installed. Refer to README.md for more details. [Default is $default_cuda_path]: " CUDA_TOOLKIT_PATH
+    read -p "Please specify the location where CUDA 7.5 toolkit is installed. Refer to README.md for more details. [Default is $default_cuda_path]: " CUDA_TOOLKIT_PATH
     fromuser="1"
     if [ -z "$CUDA_TOOLKIT_PATH" ]; then
       CUDA_TOOLKIT_PATH=$default_cuda_path
     fi
   fi
-  if [ -e "$CUDA_TOOLKIT_PATH/lib64/libcudart.so.7.0" ]; then
+  if [ -e "$CUDA_TOOLKIT_PATH/lib64/libcudart.so.7.5" ]; then
     break
   fi
-  echo "Invalid path to CUDA 7.0 toolkit. ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.0 cannot be found"
+  echo "Invalid path to CUDA 7.5 toolkit. ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.5 cannot be found"
   if [ -z "$fromuser" ]; then
     exit 1
   fi
@@ -66,7 +66,7 @@ while true; do
 done
 
 cat > third_party/gpus/cuda/cuda.config <<EOF
-# CUDA_TOOLKIT_PATH refers to the CUDA toolkit. Tensorflow requries Cuda 7.0
+# CUDA_TOOLKIT_PATH refers to the CUDA toolkit. Tensorflow requries Cuda 7.5
 # at the moment.
 CUDA_TOOLKIT_PATH="$CUDA_TOOLKIT_PATH"
 

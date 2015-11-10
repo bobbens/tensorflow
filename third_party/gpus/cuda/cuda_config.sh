@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A simple script to configure the Cuda tree needed for the TensorFlow GPU
-# build. We need both Cuda toolkit 7.0 and Cudnn 6.5.
+# build. We need both Cuda toolkit 7.5 and Cudnn 6.5.
 # Useage:
 #    * User edit cuda.config to point both Cuda toolkit and Cudnn libraries to their local path
 #    * run cuda_config.sh to generate symbolic links in the source tree to reflect
@@ -47,8 +47,8 @@ function CudaError {
 cat << EOF
 ##############################################################################
 ##############################################################################
-Cuda 7.0 toolkit is missing.
-1. Download and install the CUDA 7.0 toolkit and CUDNN 6.5 library;
+Cuda 7.5 toolkit is missing.
+1. Download and install the CUDA 7.5 toolkit and CUDNN 6.5 library;
 2. Run configure from the root of the source tree, before rerunning bazel;
 Please refer to README.md for more details.
 ##############################################################################
@@ -64,7 +64,7 @@ cat << EOF
 ##############################################################################
 ##############################################################################
 Cudnn 6.5 is missing.
-1. Download and install the CUDA 7.0 toolkit and CUDNN 6.5 library;
+1. Download and install the CUDA 7.5 toolkit and CUDNN 6.5 library;
 2. Run configure from the root of the source tree, before rerunning bazel;
 Please refer to README.md for more details.
 ##############################################################################
@@ -95,17 +95,17 @@ if [ "$CHECK_ONLY" == "1" ]; then
   CheckAndLinkToSrcTree CudaError include/cublas.h
   CheckAndLinkToSrcTree CudnnError include/cudnn.h
   CheckAndLinkToSrcTree CudaError lib64/libcudart_static.a
-  CheckAndLinkToSrcTree CudaError lib64/libcublas.so.7.0
+  CheckAndLinkToSrcTree CudaError lib64/libcublas.so.7.5
   CheckAndLinkToSrcTree CudnnError lib64/libcudnn.so.6.5
-  CheckAndLinkToSrcTree CudaError lib64/libcudart.so.7.0
+  CheckAndLinkToSrcTree CudaError lib64/libcudart.so.7.5
   exit 0
 fi
 
 # Actually configure the source tree for TensorFlow's canonical view of Cuda
 # libraries.
 
-if test ! -e ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.0; then
-  CudaError "cannot find ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.0"
+if test ! -e ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.5; then
+  CudaError "cannot find ${CUDA_TOOLKIT_PATH}/lib64/libcudart.so.7.5"
 fi
 
 if test ! -d ${CUDNN_INSTALL_PATH}; then
